@@ -13,7 +13,7 @@ treeChops_log <- list()
 
 for(i in 1:length(clades)) {
   treeChops_log[[i]] <- treeChops[[i]] %>% 
-    #filter(My <= 30) %>% 
+    filter(My <= 30) %>% 
     mutate(SR_log = log(SR), PD_log = log(PD)) 
 }
 
@@ -172,7 +172,7 @@ for(k in 1:length(clades)) {
   
 }
 
-##### Extract changing point #####
+##### Extract changing points #####
 ## SR
 cps1_SR <- list()
 cps2_SR <- list()
@@ -183,6 +183,16 @@ cps1_PD <- list()
 cps2_PD <- list()
 cps3_PD <- list()
 
+## SR_LOG
+cps1_SR_log <- list()
+cps2_SR_log <- list()
+cps3_SR_log <- list()
+
+## PD_LOG
+cps1_PD_log <- list()
+cps2_PD_log <- list()
+cps3_PD_log <- list()
+
 for(i in 1:length(clades)) {
   ## SR
   cps1_SR[[i]] <- summary(models_SR[[i]])[1, ]
@@ -192,6 +202,15 @@ for(i in 1:length(clades)) {
   cps1_PD[[i]] <- summary(models_PD[[i]])[1, ]
   cps2_PD[[i]] <- summary(models_PD[[i]])[2, ]
   cps3_PD[[i]] <- summary(models_PD[[i]])[3, ] 
+  
+  ## SR_LOG
+  cps1_SR_log[[i]] <- summary(models_SR_LOG[[i]])[1, ]
+  cps2_SR_log[[i]] <- summary(models_SR_LOG[[i]])[2, ]
+  cps3_SR_log[[i]] <- summary(models_SR_LOG[[i]])[3, ] 
+  ## PD_LOG
+  cps1_PD_log[[i]] <- summary(models_PD_LOG[[i]])[1, ]
+  cps2_PD_log[[i]] <- summary(models_PD_LOG[[i]])[2, ]
+  cps3_PD_log[[i]] <- summary(models_PD_LOG[[i]])[3, ]
 }
 
 ## SR
@@ -203,7 +222,8 @@ cps3SR <- do.call(rbind, cps3_SR)
 cps3SR$Clade <- clades
 
 cps_SR <- list(cps1SR, cps2SR, cps3SR)
-save(cps_SR, file = "output/RCP/My05/cps_SR_all.RData")
+cps_SR[[1]]
+save(cps_SR, file = "output/RCP/My01/cps_SR_VerTer.RData")
 
 ## PD
 cps1PD <- do.call(rbind, cps1_PD)
@@ -214,8 +234,34 @@ cps3PD <- do.call(rbind, cps3_PD)
 cps3PD$Clade <- clades
 
 cps_PD <- list(cps1PD, cps2PD, cps3PD)
-save(cps_PD, file = "output/RCP/My05/cps_PD_all.RData")
+cps_PD[[1]]
+save(cps_PD, file = "output/RCP/My01/cps_PD_VerTer.RData")
 
+## SR_LOG
+cps1SR_log <- do.call(rbind, cps1_SR_log)
+cps1SR_log$Clade <- clades
+cps2SR_log <- do.call(rbind, cps2_SR_log)
+cps2SR_log$Clade <- clades
+cps3SR_log <- do.call(rbind, cps3_SR_log)
+cps3SR_log$Clade <- clades
+
+cps_SR_log <- list(cps1SR_log, cps2SR_log, cps3SR_log)
+cps_SR_log[[1]]
+save(cps_SR_log, file = "output/RCP/My01/cps_SR_log_VerTer.RData")
+
+## PD_LOG
+cps1PD_log <- do.call(rbind, cps1_PD_log)
+cps1PD_log$Clade <- clades
+cps2PD_log <- do.call(rbind, cps2_PD_log)
+cps2PD_log$Clade <- clades
+cps3PD_log <- do.call(rbind, cps3_PD_log)
+cps3PD_log$Clade <- clades
+
+cps_PD_log <- list(cps1PD_log, cps2PD_log, cps3PD_log)
+cps_PD_log[[1]]
+save(cps_PD_log, file = "output/RCP/My01/cps_PD_log_VerTer.RData")
+
+### Check trend
 pps[[6]] + labs(x = "Time (My)", y = "Total PD loss  - Plants") + 
   theme(panel.background = element_rect(fill = "transparent"), # bg of the panel
         plot.background = element_rect(fill = "transparent", color = NA), # bg of the plot
