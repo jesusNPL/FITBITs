@@ -2,4 +2,4 @@
 
 FITBITs repo.
 
-<img src="figure.png" width="500"/>
+<img src="figure.png" width="800"/>
