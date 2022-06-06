@@ -16,7 +16,7 @@ makePD <- function(tree, pam, grid) {
     
     treeSel <- drop.tip(tree, setdiff(tree$tip.label, sppSel$species))
     
-    srGrid[i] <- length(sppSel$species)
+    srGrid[i] <- Ntip(treeSel)
     pdGrid[i] <- sum(treeSel$edge.length)
     
   } 
