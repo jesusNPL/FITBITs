@@ -23,7 +23,7 @@ tree_mam <- read.nexus("Data/Phylos/Mammal_tree/mcc_mammal_tree.nex")
 
 ##### Run lumberjack #####
 ### Inits
-age <- seq(from = 0.1, to = 30, by = 0.1)
+age <- seq(from = 0.1, to = 100, by = 0.1)
 
 phy_lst <- list(tree_amph, tree_squa, 
                 tree_bird_hack, tree_mam)
