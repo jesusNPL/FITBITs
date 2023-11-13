@@ -5,11 +5,6 @@ library(cowplot)
 library(scales)
 
 ### Load data
-load("output/tree_cuts_all_05_My.RData")
-load("output/tree_woody_chops_01MY.RData")
-
-treeChops <- list(treeChops$seed_otb, chopWoody[[1]])
-names(treeChops) <- c("Seed", "woody")
 
 load("output/RCP/My01/Seed_plants/cps_PD_SEEDS.RData")
 
