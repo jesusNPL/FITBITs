@@ -58,7 +58,7 @@ lines(treeChops$amphibians[, 2], col = "red", lwd = 2, ylab = "PD", xlab = "MY")
 ##### Cut Phylogeny #####
 
 ### Inits
-age <- seq(from = 0.1, to = 100, by = 0.1)
+age <- seq(from = 0.1, to = 5, by = 0.1)
 
 phy_lst <- list(tree_amph, tree_squa, 
                 tree_bird_hack, tree_mam)
@@ -74,8 +74,9 @@ Chops <- list()
 for(i in 1:times) {
   
   print(paste0("Starting lumberjack for clade ", clades[i]))
-  
-  chopTMP <- lumberPD(tree = phy_lst[[i]], ages = age, saveTree = TRUE)
+
+  # Save trees for further evaluation
+  chopTMP <- lumberPD(tree = phy_lst[[i]], ages = age, saveTree = TRUE) 
   
   Chops[[i]] <- chopTMP[[2]]
 }
