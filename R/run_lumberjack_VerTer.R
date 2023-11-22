@@ -58,7 +58,7 @@ lines(treeChops$amphibians[, 2], col = "red", lwd = 2, ylab = "PD", xlab = "MY")
 ##### Cut Phylogeny #####
 
 ### Inits
-age <- seq(from = 0.1, to = 5, by = 0.1)
+age <- seq(from = 0.1, to = 100, by = 0.1)
 
 phy_lst <- list(tree_amph, tree_squa, 
                 tree_bird_hack, tree_mam)
@@ -111,9 +111,6 @@ axis(1, pretty(range(treeChops$birds[, 3]), 10))
 mtext("Time (Mya)", side = 1, col = "black", line = 2.5)  
 
 ## Add Legend
-#legend("topleft",legend=c("Beta Gal","Cell Density"),
-#      text.col=c("black","red"),pch=c(16,15),col=c("black","red"))
-
 
 library(tidyverse)
 
